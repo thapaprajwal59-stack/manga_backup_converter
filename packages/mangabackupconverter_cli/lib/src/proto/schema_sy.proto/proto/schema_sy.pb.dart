@@ -195,6 +195,9 @@ class BackupCategory extends $pb.GeneratedMessage {
     $fixnum.Int64? order,
     $fixnum.Int64? id,
     $fixnum.Int64? flags,
+    $fixnum.Int64? version,
+    $fixnum.Int64? uid,
+    $fixnum.Int64? lastModifiedAt,
   }) {
     final $result = create();
     if (name != null) {
@@ -209,6 +212,15 @@ class BackupCategory extends $pb.GeneratedMessage {
     if (flags != null) {
       $result.flags = flags;
     }
+    if (version != null) {
+      $result.version = version;
+    }
+    if (uid != null) {
+      $result.uid = uid;
+    }
+    if (lastModifiedAt != null) {
+      $result.lastModifiedAt = lastModifiedAt;
+    }
     return $result;
   }
   BackupCategory._() : super();
@@ -222,7 +234,10 @@ class BackupCategory extends $pb.GeneratedMessage {
         ..aQS(1, _omitFieldNames ? '' : 'name')
         ..aInt64(2, _omitFieldNames ? '' : 'order')
         ..aInt64(3, _omitFieldNames ? '' : 'id')
-        ..aInt64(100, _omitFieldNames ? '' : 'flags');
+        ..aInt64(100, _omitFieldNames ? '' : 'flags')
+        ..aInt64(601, _omitFieldNames ? '' : 'version')
+        ..aInt64(602, _omitFieldNames ? '' : 'uid')
+        ..aInt64(603, _omitFieldNames ? '' : 'lastModifiedAt', protoName: 'lastModifiedAt');
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -291,6 +306,42 @@ class BackupCategory extends $pb.GeneratedMessage {
   $core.bool hasFlags() => $_has(3);
   @$pb.TagNumber(100)
   void clearFlags() => clearField(100);
+
+  @$pb.TagNumber(601)
+  $fixnum.Int64 get version => $_getI64(4);
+  @$pb.TagNumber(601)
+  set version($fixnum.Int64 v) {
+    $_setInt64(4, v);
+  }
+
+  @$pb.TagNumber(601)
+  $core.bool hasVersion() => $_has(4);
+  @$pb.TagNumber(601)
+  void clearVersion() => clearField(601);
+
+  @$pb.TagNumber(602)
+  $fixnum.Int64 get uid => $_getI64(5);
+  @$pb.TagNumber(602)
+  set uid($fixnum.Int64 v) {
+    $_setInt64(5, v);
+  }
+
+  @$pb.TagNumber(602)
+  $core.bool hasUid() => $_has(5);
+  @$pb.TagNumber(602)
+  void clearUid() => clearField(602);
+
+  @$pb.TagNumber(603)
+  $fixnum.Int64 get lastModifiedAt => $_getI64(6);
+  @$pb.TagNumber(603)
+  set lastModifiedAt($fixnum.Int64 v) {
+    $_setInt64(6, v);
+  }
+
+  @$pb.TagNumber(603)
+  $core.bool hasLastModifiedAt() => $_has(6);
+  @$pb.TagNumber(603)
+  void clearLastModifiedAt() => clearField(603);
 }
 
 /// BackupChapter.kt
