@@ -1,0 +1,44 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers whenever you push a tag starting with "v" (e.g., v1.0.0)
+
+jobs:
+  build-and-release:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            output_name: mangabackuputil-linux
+          - os: windows-latest
+            output_name: mangabackuputil-windows.exe
+          - os: macos-latest
+            output_name: mangabackuputil-macos
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install Dependencies
+        run: dart pub get
+
+      # Note: Swap 'bin/main.dart' if the entrypoint file has a different name
+      - name: Compile Executable
+        run: dart compile exe bin/main.dart -o ${{ matrix.output_name }}
+
+      - name: Create and Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.output_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
